@@ -1,0 +1,33 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class BinaryTreeWithInsert {
+    Node root;
+
+    void insert(int value) {
+        Node newNode = new Node(value);
+        if (root == null) {
+            root = newNode;
+            return;
+        }
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            Node temp = q.poll();
+
+            if (temp.left == null) {
+                temp.left = newNode;
+                break;
+            } else
+                q.add(temp.left);
+
+            if (temp.right == null) {
+                temp.right = newNode;
+                break;
+            } else
+                q.add(temp.right);
+        }
+    }
+}
